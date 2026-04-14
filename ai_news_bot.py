@@ -1,12 +1,4 @@
-"""
-AI News Telegram Bot — Full Version
-====================================
-Sources  : Reddit (RSS), Google News (RSS), YouTube API, LinkedIn (RapidAPI)
-Schedule : Daily 11:00 AM IST
-Output   : Telegram Channel / Group
 
-FILL IN YOUR KEYS IN THE CONFIG SECTION BELOW
-"""
 
 import os
 import requests
@@ -16,9 +8,7 @@ import pytz
 from apscheduler.schedulers.blocking import BlockingScheduler
 from googleapiclient.discovery import build
 
-# ══════════════════════════════════════════════════════
-#  CONFIG — PASTE YOUR KEYS HERE
-# ══════════════════════════════════════════════════════
+
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID")
@@ -51,9 +41,7 @@ GOOGLE_NEWS_QUERIES = [
 ]
 
 
-# ══════════════════════════════════════════════════════
-#  SOURCE 1 — REDDIT (via RSS, no API key needed)
-# ══════════════════════════════════════════════════════
+
 
 def fetch_reddit_news(limit=5):
     print("  Fetching Reddit...")
@@ -75,9 +63,7 @@ def fetch_reddit_news(limit=5):
     return posts[:limit]
 
 
-# ══════════════════════════════════════════════════════
-#  SOURCE 2 — GOOGLE NEWS (via RSS, no API key needed)
-# ══════════════════════════════════════════════════════
+
 
 def fetch_google_news(limit=5):
     print("  Fetching Google News...")
