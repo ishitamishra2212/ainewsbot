@@ -24,6 +24,7 @@ TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID   = os.environ.get("TELEGRAM_CHAT_ID")
 YOUTUBE_API_KEY    = os.environ.get("YOUTUBE_API_KEY")
 RAPIDAPI_KEY       = os.environ.get("RAPIDAPI_KEY")
+TEAMS_WEBHOOK_URL = os.environ.get("TEAMS_WEBHOOK_URL")
 
 YOUTUBE_CHANNEL_IDS = [
     "UCbmNph6atAoGfqLoCL_duAg",   # Andrej Karpathy
