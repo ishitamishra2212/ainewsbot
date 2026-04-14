@@ -230,6 +230,48 @@ def send_to_telegram(message):
 #  DAILY JOB
 # ══════════════════════════════════════════════════════
 
+def send_to_teams(message):
+    print("Sending to Teams...")
+    if not TEAMS_WEBHOOK_URL:
+        print("    Skipping Teams - webhook not set.")
+        return
+    clean = message.replace("*", "").replace("_", "")
+    payload = {
+        "type": "message",
+        "attachments": [
+            {
+                "contentType": "application/vnd.microsoft.card.adaptive",
+                "content": {
+                    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                    "type": "AdaptiveCard",
+                    "version": "1.2",
+                    "body": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Top 5 AI News for Business",
+                            "weight": "Bolder",
+                            "size": "Medium"
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": clean,
+                            "wrap": True
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+    try:
+        r = requests.post(TEAMS_WEBHOOK_URL, json=payload, timeout=10)
+        if r.ok:
+            print("  Sent to Teams successfully!")
+        else:
+            print(f"  Teams failed: {r.status_code} - {r.text}")
+    except Exception as e:
+        print(f"  Teams error: {e}")
+
+
 def job():
     print(f"\n{'='*40}")
     print(f"Running job at {datetime.now()}")
@@ -237,6 +279,7 @@ def job():
     try:
         msg = build_message()
         send_to_telegram(msg)
+        send_to_teams(msg)
     except Exception as e:
         print(f"Job error: {e}")
 
