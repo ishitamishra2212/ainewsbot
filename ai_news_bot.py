@@ -249,7 +249,7 @@ if __name__ == "__main__":
     print("AI News Bot - Starting up...")
 
 
-    #job()
+    job()
 
     # --------------------------------------------------
     # SCHEDULED MODE - runs every day at 11 AM IST
